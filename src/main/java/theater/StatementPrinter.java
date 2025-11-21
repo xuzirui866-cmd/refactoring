@@ -25,7 +25,7 @@ public class StatementPrinter {
         final StringBuilder result = new StringBuilder("Statement for "
                 + invoice.getCustomer() + System.lineSeparator());
 
-        final int volumeCredits = getTotalVolumeCredits();
+        final int volumeCredits = getVolumeCredits();
 
         final int totalAmount = getTotalAmount();
 
@@ -49,7 +49,7 @@ public class StatementPrinter {
         return totalAmount;
     }
 
-    private int getTotalVolumeCredits(Performance performance) {
+    private int getVolumeCredits(Performance performance) {
         int result = 0;
         result += Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
         // add extra credit for every five comedy attendees
@@ -59,10 +59,10 @@ public class StatementPrinter {
         return result;
     }
 
-    private int getTotalVolumeCredits() {
+    private int getVolumeCredits() {
         int volumeCredits = 0;
         for (Performance performance : invoice.getPerformances()) {
-            volumeCredits += this.getTotalVolumeCredits(performance);
+            volumeCredits += this.getVolumeCredits(performance);
         }
         return volumeCredits;
     }
