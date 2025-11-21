@@ -25,7 +25,7 @@ public class StatementPrinter {
         final StringBuilder result = new StringBuilder("Statement for "
                 + invoice.getCustomer() + System.lineSeparator());
 
-        final int volumeCredits = getVolumeCredits();
+        final int volumeCredits = getTotalVolumeCredits();
 
         final int totalAmount = getTotalAmount();
 
@@ -59,7 +59,7 @@ public class StatementPrinter {
         return result;
     }
 
-    private int getVolumeCredits() {
+    private int getTotalVolumeCredits() {
         int volumeCredits = 0;
         for (Performance performance : invoice.getPerformances()) {
             volumeCredits += this.getVolumeCredits(performance);
