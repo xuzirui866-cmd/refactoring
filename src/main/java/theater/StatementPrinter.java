@@ -25,18 +25,18 @@ public class StatementPrinter {
         final StringBuilder result = new StringBuilder("Statement for "
                 + invoice.getCustomer() + System.lineSeparator());
 
-        final int volumeCredits = getVolumeCredits();
+        final int volumeCredits = getTotalVolumeCredits();
 
         final int totalAmount = getTotalAmount();
 
         for (Performance performance : invoice.getPerformances()) {
             result.append(String.format("  %s: %s (%s seats)%n",
                     getPlay(performance).getName(),
-                    getFormat(getAmount(performance)),
+                    usd(getAmount(performance)),
                     performance.getAudience()));
         }
 
-        result.append(String.format("Amount owed is %s%n", getFormat(totalAmount)));
+        result.append(String.format("Amount owed is %s%n", usd(totalAmount)));
         result.append(String.format("You earned %s credits%n", volumeCredits));
         return result.toString();
     }
@@ -49,7 +49,7 @@ public class StatementPrinter {
         return totalAmount;
     }
 
-    private int getVolumeCredits(Performance performance) {
+    private int getTotalVolumeCredits(Performance performance) {
         int result = 0;
         result += Math.max(performance.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
         // add extra credit for every five comedy attendees
@@ -59,15 +59,15 @@ public class StatementPrinter {
         return result;
     }
 
-    private int getVolumeCredits() {
+    private int getTotalVolumeCredits() {
         int volumeCredits = 0;
         for (Performance performance : invoice.getPerformances()) {
-            volumeCredits += getVolumeCredits(performance);
+            volumeCredits += this.getTotalVolumeCredits(performance);
         }
         return volumeCredits;
     }
 
-    private static String getFormat(int totalAmount) {
+    private static String usd(int totalAmount) {
         return NumberFormat.getCurrencyInstance(Locale.US).format(totalAmount / Constants.PERCENT_FACTOR);
     }
 
