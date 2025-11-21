@@ -1,4 +1,6 @@
-c123e02 (HEAD -> main, origin/main, origin/HEAD) Task2.2
+26cae0e (HEAD -> main, origin/main, origin/HEAD) Task2.4
+9d6340e Task2.3
+c123e02 Task2.2
 e55725c Task2.1
 0ea834b Task1.2
 f313421 Task1.1
@@ -7,4 +9,3 @@ ff5004e adding shortcut keys for Inline Variable (Re: Piazza question)
 b545fe2 clarifying extracted method names in README.md
 a0124c9 fixing starter file
 c8d9d38 adding starter files
-cbe4517 first commit
