@@ -1,12 +1,31 @@
 package theater;
 
+/**
+ * Represents a play with a name and a type.
+ */
 public class Play {
 
-    public String name;
-    public String type;
+    private String name;
+    private String type;
 
     public Play(String name, String type) {
         this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
         this.type = type;
     }
 }
